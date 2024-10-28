@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Authentication.views import RegisterSerializer,RegisterView
+from Authentication.views import RegisterSerializer,RegisterView,LoginView,LogoutView, DashboardView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -25,6 +25,9 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/register/',RegisterView.as_view(), name="auth_register"),
+    path('api/auth/login/',LoginView.as_view(), name="auth_login"),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('api/auth/logout/', LogoutView.as_view(), name='logout'),
 ]
